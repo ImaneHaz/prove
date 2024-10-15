@@ -1,0 +1,19 @@
+@startuml
+actor User
+participant "GraphTool UI" as Frontend
+participant "Node.js Server" as Backend
+participant "GraphTool" as GraphTool
+participant "RecommendationEngine" as RecommendationEngine
+
+User -> Frontend: Inputs graph data
+Frontend -> Backend: Sends data to server
+Backend -> GraphTool: Processes data
+GraphTool -> Backend: Returns graph data
+Backend -> Frontend: Displays graph
+
+User -> Frontend: Requests recommendations
+Frontend -> Backend: Sends request
+Backend -> RecommendationEngine: Processes recommendation
+RecommendationEngine -> Backend: Sends recommendations
+Backend -> Frontend: Displays recommendations
+@enduml

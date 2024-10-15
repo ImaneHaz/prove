@@ -1,0 +1,14 @@
+@startuml
+[*] --> Idle
+
+state Idle {
+  [*] --> WaitingForInput
+  WaitingForInput --> ProcessingGraph : User inputs graph data
+  ProcessingGraph --> DisplayGraph : Graph created
+  DisplayGraph --> WaitingForInput : User updates graph
+  DisplayGraph --> RequestRecommendation : User requests recommendation
+  RequestRecommendation --> DisplayRecommendation : Recommendations generated
+  DisplayRecommendation --> WaitingForInput : User inputs new data
+}
+
+@enduml

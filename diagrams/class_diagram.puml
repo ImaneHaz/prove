@@ -1,0 +1,27 @@
+@startuml
+class User {
+  + inputGraph(data)
+  + requestRecommendation()
+}
+
+class GraphTool {
+  + createGraph(data)
+  + updateGraph(data)
+  + displayGraph()
+}
+
+class RecommendationEngine {
+  + analyzeGraphData(data)
+  + generateRecommendation()
+}
+
+class Backend {
+  + handleRequest()
+  + sendResponse()
+}
+
+User --> Backend
+Backend --> GraphTool
+Backend --> RecommendationEngine
+GraphTool --> "Graph Data" RecommendationEngine
+@enduml
