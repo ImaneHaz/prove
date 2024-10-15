@@ -1,20 +1,17 @@
 @startuml
 package "Frontend" {
   [GraphTool UI]
+  [Equation Parser]
+  [Graph Plotter]
 }
 
-package "Backend" {
-  [Node.js Server]
+package "External Libraries" {
+  [Math.js Library]
+  [Plotly Library]
 }
 
-package "API Layer" {
-  [Graph API]
-  [Recommendation API]
-}
-
-[GraphTool UI] --> [Graph API] : Sends graph data
-[Graph API] --> [Node.js Server] : For processing
-[Node.js Server] --> [GraphTool UI] : Displays graph
-[Recommendation API] --> [Node.js Server] : For recommendations
-[Node.js Server] --> [GraphTool UI] : Sends recommendations
+[GraphTool UI] --> [Equation Parser] : Sends user input
+[Equation Parser] --> [Math.js Library] : Uses for equation evaluation
+[GraphTool UI] --> [Graph Plotter] : Sends equations and range
+[Graph Plotter] --> [Plotly Library] : Uses for graph rendering
 @enduml
