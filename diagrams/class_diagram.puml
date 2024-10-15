@@ -1,27 +1,35 @@
 @startuml
 class User {
-  + inputGraph(data)
-  + requestRecommendation()
+  + addEquation()
+  + plotGraph()
 }
 
 class GraphTool {
-  + createGraph(data)
-  + updateGraph(data)
-  + displayGraph()
+  + addEquation()
+  + plotGraph()
+  + validateEquations()
 }
 
-class RecommendationEngine {
-  + analyzeGraphData(data)
-  + generateRecommendation()
+class Equation {
+  - equationString: String
+  + parseEquation()
+  + evaluateEquation(x: Float): Float
 }
 
-class Backend {
-  + handleRequest()
-  + sendResponse()
+class Range {
+  + xMin: Float
+  + xMax: Float
+  + yMin: Float
+  + yMax: Float
+  + validateRange()
 }
 
-User --> Backend
-Backend --> GraphTool
-Backend --> RecommendationEngine
-GraphTool --> "Graph Data" RecommendationEngine
+class Plotter {
+  + plot(data: List)
+}
+
+User --> GraphTool : interacts with
+GraphTool --> Equation : manages equations
+GraphTool --> Range : uses for x/y ranges
+GraphTool --> Plotter : sends data for plotting
 @enduml
