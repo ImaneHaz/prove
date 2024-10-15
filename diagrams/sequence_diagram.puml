@@ -1,19 +1,18 @@
 @startuml
 actor User
 participant "GraphTool UI" as Frontend
-participant "Node.js Server" as Backend
-participant "GraphTool" as GraphTool
-participant "RecommendationEngine" as RecommendationEngine
+participant "Equation Parser" as Parser
+participant "Graph Plotter" as Plotter
+participant "Math.js Library" as MathLib
+participant "Plotly Library" as PlotlyLib
 
-User -> Frontend: Inputs graph data
-Frontend -> Backend: Sends data to server
-Backend -> GraphTool: Processes data
-GraphTool -> Backend: Returns graph data
-Backend -> Frontend: Displays graph
+User -> Frontend: Inputs equation and range
+Frontend -> Parser: Sends equation for parsing
+Parser -> MathLib: Evaluates equation
+Parser -> Frontend: Returns parsed equation
 
-User -> Frontend: Requests recommendations
-Frontend -> Backend: Sends request
-Backend -> RecommendationEngine: Processes recommendation
-RecommendationEngine -> Backend: Sends recommendations
-Backend -> Frontend: Displays recommendations
+Frontend -> Plotter: Sends parsed equation and range
+Plotter -> PlotlyLib: Plots graph
+PlotlyLib -> Plotter: Returns graph data
+Plotter -> Frontend: Displays graph to user
 @enduml
