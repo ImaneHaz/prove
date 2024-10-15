@@ -3,12 +3,9 @@
 
 state Idle {
   [*] --> WaitingForInput
-  WaitingForInput --> ProcessingGraph : User inputs graph data
-  ProcessingGraph --> DisplayGraph : Graph created
-  DisplayGraph --> WaitingForInput : User updates graph
-  DisplayGraph --> RequestRecommendation : User requests recommendation
-  RequestRecommendation --> DisplayRecommendation : Recommendations generated
-  DisplayRecommendation --> WaitingForInput : User inputs new data
+  WaitingForInput --> ProcessingGraph : User inputs equation and range
+  ProcessingGraph --> DisplayGraph : Graph plotted
+  DisplayGraph --> WaitingForInput : User inputs new equation or updates graph
 }
 
 @enduml
